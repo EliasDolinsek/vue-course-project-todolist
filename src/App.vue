@@ -18,6 +18,8 @@ const todoItems = ref([
     done: false,
   },
 ]);
+
+// TODO: 2. Erstelle computed properties, welche nach upcoming und done todo items filtern
 </script>
 
 <template>
@@ -25,6 +27,7 @@ const todoItems = ref([
   <main>
     <h1 id="title">Todolist</h1>
     <p style="color: white">Todo Items: {{ todoItems }}</p>
+    <!--TODO: 1. Erstelle zwei paragraphs, welche einmal upcoming todo items und einmal done todo items anzeigen-->
   </main>
 </template>
 
