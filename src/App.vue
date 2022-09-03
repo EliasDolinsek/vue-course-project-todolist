@@ -1,6 +1,6 @@
 <script setup>
 // TODO: 1. Füge uuid mit dem command "npm install uuid" hinzu.
-// TODO: 2. Erstelle eine todoItems-ref, welche zwei Todo Items in einem Array beinhaltet (id: uuid, taskName: String, description: String, dueDate: String, done: Boolean)
+// TODO: 2. Erstelle ein todoItems-ref, welches zwei Todo Items in einem Array beinhaltet (id: String, taskName: String, description: String, dueDate: String, done: Boolean)
 </script>
 
 <template>
