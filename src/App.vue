@@ -14,7 +14,7 @@
   min-width: 100vw;
   background: var(--background-light);
 }
-#title {
+.title {
   font-size: 2rem;
   font-weight: 600;
   color: #fff;
