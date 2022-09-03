@@ -1,6 +1,6 @@
 <script setup>
 import { v4 as uuidv4 } from "uuid";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 const todoItems = ref([
   {
@@ -15,16 +15,25 @@ const todoItems = ref([
     taskName: "Second Todo Item",
     description: "The description for the second Todo Item",
     dueDate: "2023-02-01",
-    done: false,
+    done: true,
   },
 ]);
+
+const todoItemsNotDone = computed(() => {
+  return todoItems.value.filter((item) => !item.done);
+});
+
+const todoItemsDone = computed(() => {
+  return todoItems.value.filter((item) => item.done);
+});
 </script>
 
 <template>
   <header class="colored-header"></header>
   <main>
     <h1 id="title">Todolist</h1>
-    <p style="color: white">Todo Items: {{ todoItems }}</p>
+    <p style="color: white">Upcoming Todo Items: {{ todoItemsNotDone }}</p>
+    <p style="color: white">Done Todo Items: {{ todoItemsDone }}</p>
   </main>
 </template>
 
