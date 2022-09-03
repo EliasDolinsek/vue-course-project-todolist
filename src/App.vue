@@ -1,6 +1,7 @@
 <script setup>
 import { v4 as uuidv4 } from "uuid";
 import { computed, ref } from "vue";
+import TodoItemsCategory from "./components/TodoItemsCategory.vue";
 
 const todoItems = ref([
   {
@@ -26,14 +27,28 @@ const todoItemsNotDone = computed(() => {
 const todoItemsDone = computed(() => {
   return todoItems.value.filter((item) => item.done);
 });
+
+const todoItemsNotDoneCategoryTitle = computed(
+  () => `Upcoming - (${todoItemsNotDone.value.length})`
+);
+
+const todoItemsDoneCategoryTitle = computed(
+  () => `Done - (${todoItemsDone.value.length})`
+);
 </script>
 
 <template>
   <header class="colored-header"></header>
   <main>
     <h1 id="title">Todolist</h1>
-    <p style="color: white">Upcoming Todo Items: {{ todoItemsNotDone }}</p>
-    <p style="color: white">Done Todo Items: {{ todoItemsDone }}</p>
+    <TodoItemsCategory
+      v-model="todoItemsNotDone"
+      :title="todoItemsNotDoneCategoryTitle"
+    />
+    <TodoItemsCategory
+      v-model="todoItemsDone"
+      :title="todoItemsDoneCategoryTitle"
+    />
   </main>
 </template>
 
