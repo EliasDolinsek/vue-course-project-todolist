@@ -1,6 +1,6 @@
 <script setup>
 defineProps({
-  modelValue: {
+  todoItems: {
     type: Array,
     required: true,
   },
@@ -13,7 +13,7 @@ defineProps({
 
 <template>
   <h3 class="category-title">{{ title }}</h3>
-  <p style="color: white">{{ modelValue }}</p>
+  <p style="color: white">{{ todoItems }}</p>
 </template>
 
 <style scoped>

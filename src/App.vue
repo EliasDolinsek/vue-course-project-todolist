@@ -42,11 +42,11 @@ const todoItemsDoneCategoryTitle = computed(
   <main>
     <h1 id="title">Todolist</h1>
     <TodoItemsCategory
-      v-model="todoItemsNotDone"
+      :todo-items="todoItemsNotDone"
       :title="todoItemsNotDoneCategoryTitle"
     />
     <TodoItemsCategory
-      v-model="todoItemsDone"
+      :todo-items="todoItemsDone"
       :title="todoItemsDoneCategoryTitle"
     />
   </main>
