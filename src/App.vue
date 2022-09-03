@@ -26,12 +26,15 @@ const todoItemsNotDone = computed(() => {
 const todoItemsDone = computed(() => {
   return todoItems.value.filter((item) => item.done);
 });
+
+// TODO: 3. Definiere zwei computed properties, welche den title für die TodoItemsCategory für Upcoming und Done zurückgeben
 </script>
 
 <template>
   <header class="colored-header"></header>
   <main>
     <h1 id="title">Todolist</h1>
+    <!--TODO: 4. Ersetze die beiden paragraphs mit zwei TodoItemCategory-Elementen und übergib den title und die todoItems als prop -->
     <p style="color: white">Upcoming Todo Items: {{ todoItemsNotDone }}</p>
     <p style="color: white">Done Todo Items: {{ todoItemsDone }}</p>
   </main>
