@@ -2,7 +2,6 @@
 import { ref } from "vue";
 
 // TODO: 2. Erstelle eine ref "showForm" 
-const showForm = ref(false);
 </script>
 
 <template>
