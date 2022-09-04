@@ -1,14 +1,5 @@
 <script setup>
-defineProps({
-  todoItems: {
-    type: Array,
-    required: true,
-  },
-  title: {
-    type: String,
-    required: true,
-  },
-});
+defineProps(["title", "todoItems"]);
 </script>
 
 <template>
