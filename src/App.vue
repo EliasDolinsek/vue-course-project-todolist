@@ -41,6 +41,7 @@ const todoItemsDoneCategoryTitle = computed(
   <header class="colored-header"></header>
   <main>
     <h1 id="title">Todolist</h1>
+    <!--TODO: 5. Füge die TheAddTodoItemCard-Component unter dem h1-Element hinzu-->
     <TodoItemsCategory
       :todo-items="todoItemsNotDone"
       :title="todoItemsNotDoneCategoryTitle"
