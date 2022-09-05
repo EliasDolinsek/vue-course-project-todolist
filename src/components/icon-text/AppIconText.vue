@@ -1,11 +1,11 @@
 <script setup>
 defineProps({
   icon: {
-    icon: String,
+    type: String,
     required: true,
   },
   text: {
-    text: String,
+    type: String,
     required: true,
   },
   color: {
