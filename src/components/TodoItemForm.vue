@@ -1,10 +1,46 @@
 <script setup>
+import { reactive } from "vue";
+import AppButtonPrimary from "./button/AppButtonPrimary.vue";
+
+const props = defineProps({
+  dateClearable: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+const emit = defineEmits(["addItem"]);
+
+const formData = reactive({
+  title: "",
+  description: "",
+  dueDate: null,
+});
+
+const clearFormData = () => {
+  formData.title = "";
+  formData.description = "";
+  dueDate = null;
+};
+
+const handleSubmit = () => {
+  const newItem = {
+    title: formData.title,
+    description: formData.description,
+    dueDate: formData.dueDate,
+  };
+
+  emit("addItem", newItem);
+  clearFormData();
+};
 </script>
 
 <template>
-  <form class="form-container">
+  <form @submit.prevent="handleSubmit" class="form-container">
     <input
       type="text"
+      :value="formData.title"
+      @input="(event) => (formData.title = event.target.value)"
       placeholder="Title"
       class="input-title item-input"
       required
@@ -13,15 +49,29 @@
       <span class="material-symbols-outlined icon">text_snippet</span>
       <input
         type="text"
+        :value="formData.description"
+        @input="(event) => (formData.description = event.target.value)"
         placeholder="Description"
         class="item-input item-input-expanded"
       />
     </div>
     <div class="icon-form-input-container">
       <span class="material-symbols-outlined icon">today</span>
-      <input type="date" class="item-input" />
+      <input
+        type="date"
+        :value="formData.dueDate"
+        @input="(event) => (formData.dueDate = event.target.value)"
+        class="item-input"
+      />
+      <span
+        v-if="dateClearable"
+        class="material-symbols-outlined icon button-remove-date"
+        @click="dueDate = null"
+        >close</span
+      >
     </div>
     <div class="form-actions-container">
+      <AppButtonPrimary>Create</AppButtonPrimary>
     </div>
   </form>
 </template>

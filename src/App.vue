@@ -36,13 +36,23 @@ const todoItemsNotDoneCategoryTitle = computed(
 const todoItemsDoneCategoryTitle = computed(
   () => `Done - (${todoItemsDone.value.length})`
 );
+
+const handleTodoItemAdd = (item) => {
+  const newItem = {
+    id: uuidv4(),
+    done: false,
+    ...item,
+  };
+
+  todoItems.value.push(newItem);
+};
 </script>
 
 <template>
   <header class="colored-header"></header>
   <main>
     <h1 id="title">Todolist</h1>
-    <TheAddTodoItemCard />
+    <TheAddTodoItemCard @add-item="handleTodoItemAdd" />
     <TodoItemsCategory
       :todo-items="todoItemsNotDone"
       :title="todoItemsNotDoneCategoryTitle"

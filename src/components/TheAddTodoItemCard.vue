@@ -1,14 +1,21 @@
 <script setup>
 import { ref } from "vue";
 import AppButtonCircledAdd from "./button/AppButtonCircledAdd.vue";
+import TodoItemForm from "./TodoItemForm.vue";
 
 const showForm = ref(false);
+
+const emit = defineEmits("addItem");
+
+const handleAddItem = (item) => {
+  emit("addItem", item);
+};
 </script>
 
 <template>
   <div class="card-container">
     <div v-if="showForm">
-      <p style="color: white">Display the form</p>
+      <TodoItemForm @add-item="handleAddItem" />
     </div>
     <div v-else class="add-item-texts-container" @click="showForm = true">
       <AppButtonCircledAdd />
