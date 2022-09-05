@@ -1,8 +1,14 @@
 <script setup>
+    // TODO: 3. Definiere emits mit einem "addItem" Event
+    // TODO: 2. Erstelle ein reactive object "formData", welches title, description und dueDate speichert
+
+    // TODO: 4. Erstelle eine handleSubmit function, welche das neue Todo Item im addItem-Event emittet
+    // TODO: 6. Erstelle eine Function, welche die Eingabe der Form zurücksetzt
 </script>
 
 <template>
   <form class="form-container">
+    <!--TODO: 5. Reagiere auf Änderungen in den inputs mithilfe dem input-Event-->
     <input
       type="text"
       placeholder="Title"
