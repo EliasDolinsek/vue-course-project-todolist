@@ -29,6 +29,7 @@ const handleSubmit = () => {
 </script>
 
 <template>
+  <!--TODO: 1. Synchronisiere den state der inputs mithilfe von v-model-->
   <form @submit.prevent="handleSubmit" class="form-container">
     <input
       type="text"
