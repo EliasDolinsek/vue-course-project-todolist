@@ -61,6 +61,11 @@ const handleTodoItemAdd = (item) => {
       :todo-items="todoItemsDone"
       :title="todoItemsDoneCategoryTitle"
     />
+    <div>
+      <!--TODO: 2. Lege eine AppIconText-Component mit icon=today, text="2022-11-11" und color=#9F7443 an-->
+      <!--TODO: 3. Lege eine AppIconText-Component mit icon=delete, text="Delete", color=#E66D67 und action=true an-->
+      <!--TODO: 4. Lege eine AppIconText-Component mit icon=edit, text="Edit", color=#7D7D85 und action=true an-->
+    </div>
   </main>
 </template>
 
