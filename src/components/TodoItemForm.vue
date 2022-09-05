@@ -32,8 +32,7 @@ const handleSubmit = () => {
   <form @submit.prevent="handleSubmit" class="form-container">
     <input
       type="text"
-      :value="formData.title"
-      @input="(event) => (formData.title = event.target.value)"
+      v-model="formData.title"
       placeholder="Title"
       class="input-title item-input"
       required
@@ -42,8 +41,7 @@ const handleSubmit = () => {
       <span class="material-symbols-outlined icon">text_snippet</span>
       <input
         type="text"
-        :value="formData.description"
-        @input="(event) => (formData.description = event.target.value)"
+        v-model="formData.description"
         placeholder="Description"
         class="item-input item-input-expanded"
       />
@@ -52,8 +50,7 @@ const handleSubmit = () => {
       <span class="material-symbols-outlined icon">today</span>
       <input
         type="date"
-        :value="formData.dueDate"
-        @input="(event) => (formData.dueDate = event.target.value)"
+        v-model="formData.dueDate"
         class="item-input"
       />
     </div>
