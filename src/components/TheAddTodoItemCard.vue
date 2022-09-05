@@ -3,6 +3,7 @@ import { ref } from "vue";
 import AppButtonCircledAdd from "./button/AppButtonCircledAdd.vue";
 
 const showForm = ref(false);
+// TODO: 7. Schicke das von der TodoItemForm-Component übertragene item in die App-Component weiter
 </script>
 
 <template>

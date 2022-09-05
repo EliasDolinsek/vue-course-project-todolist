@@ -36,6 +36,8 @@ const todoItemsNotDoneCategoryTitle = computed(
 const todoItemsDoneCategoryTitle = computed(
   () => `Done - (${todoItemsDone.value.length})`
 );
+
+//TODO: 8. Füge ein neues Todo Item in das todoItems-Array hinzu, sobald eines von TheAddTodoItemCard übermittelt wird
 </script>
 
 <template>
