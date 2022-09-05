@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import { computed, ref } from "vue";
 import TodoItemsCategory from "./components/TodoItemsCategory.vue";
 import TheAddTodoItemCard from "./components/TheAddTodoItemCard.vue";
+import AppIconText from "./components/icon-text/AppIconText.vue";
 
 const todoItems = ref([
   {
@@ -61,6 +62,11 @@ const handleTodoItemAdd = (item) => {
       :todo-items="todoItemsDone"
       :title="todoItemsDoneCategoryTitle"
     />
+    <div>
+      <AppIconText icon="today" text="2022-11-11" color="#9F7443"/>
+      <AppIconText icon="delete" text="Delete" color="#E66D67" action/>
+      <AppIconText icon="edit" text="Edit" color="#7D7D85" action/>
+    </div>
   </main>
 </template>
 
