@@ -2,13 +2,6 @@
 import { reactive } from "vue";
 import AppButtonPrimary from "./button/AppButtonPrimary.vue";
 
-const props = defineProps({
-  dateClearable: {
-    type: Boolean,
-    default: false,
-  },
-});
-
 const emit = defineEmits(["addItem"]);
 
 const formData = reactive({
@@ -63,12 +56,6 @@ const handleSubmit = () => {
         @input="(event) => (formData.dueDate = event.target.value)"
         class="item-input"
       />
-      <span
-        v-if="dateClearable"
-        class="material-symbols-outlined icon button-remove-date"
-        @click="dueDate = null"
-        >close</span
-      >
     </div>
     <div class="form-actions-container">
       <AppButtonPrimary>Create</AppButtonPrimary>
