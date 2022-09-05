@@ -8,7 +8,7 @@ const showForm = ref(false);
 <template>
   <div class="card-container">
     <div v-if="showForm">
-      <p style="color: white">TODO: Display the form</p>
+      <p style="color: white">Display the form</p>
     </div>
     <div v-else class="add-item-texts-container" @click="showForm = true">
       <AppButtonCircledAdd />
