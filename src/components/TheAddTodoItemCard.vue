@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from "vue";
 import AppButtonCircledAdd from "./button/AppButtonCircledAdd.vue";
-import TodoItemForm from "./TodoItemForm.vue";
 
 const showForm = ref(false);
 </script>
