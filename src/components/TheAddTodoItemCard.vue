@@ -5,7 +5,7 @@ import TodoItemForm from "./TodoItemForm.vue";
 
 const showForm = ref(false);
 
-const emit = defineEmits("addItem");
+const emit = defineEmits(["addItem"]);
 
 const handleAddItem = (item) => {
   emit("addItem", item);
