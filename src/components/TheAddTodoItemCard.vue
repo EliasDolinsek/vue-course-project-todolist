@@ -5,8 +5,11 @@ import TodoItemForm from "./TodoItemForm.vue";
 
 const showForm = ref(false);
 
-const emit = defineEmits("addItem");
+// TODO: 6. Erstelle ein reactive object "itemData", welches taskName, description und dueDate speichert
+const emit = defineEmits(["addItem"]);
 
+// TODO: 10. Ändere die handleAddItem function um mit dem v-model zu funktionieren
+// TODO: 11. Setze den Input der TodoItemForm in der handleAddItem function zurück
 const handleAddItem = (item) => {
   emit("addItem", item);
 };
@@ -15,6 +18,9 @@ const handleAddItem = (item) => {
 <template>
   <div class="card-container">
     <div v-if="showForm">
+      <!--TODO: 7. Ersetze @add-item mit v-model-->
+      <!--TODO: 8. Erstelle einen Create-Button mithilfe von AppButtonPrimary im actions-slot der TodoItemForm-->
+      <!--TODO: 9. Erstelle einen Cancel-Button mit class="button-cancel" im actions-slot der TodoItemForm-->
       <TodoItemForm @add-item="handleAddItem" />
     </div>
     <div v-else class="add-item-texts-container" @click="showForm = true">

@@ -2,6 +2,14 @@
 import { reactive } from "vue";
 import AppButtonPrimary from "./button/AppButtonPrimary.vue";
 
+/* TODO: 1. Definiere folgende props:
+  - modelValue (type: Object, required: true)
+  - dateClearable (type: Boolean, default: false)
+*/
+
+// TODO: 2. Ersetze den addItem-Event mit dem update:modelValue-Event
+// TODO: 3. Erstelle Computed Properties für taskName, description und dueDate
+
 const emit = defineEmits(["addItem"]);
 
 const formData = reactive({
@@ -30,6 +38,7 @@ const handleSubmit = () => {
 
 <template>
   <form @submit.prevent="handleSubmit" class="form-container">
+    <!--TODO: 4. Verwende die Computed Properties als v-model-->
     <input
       type="text"
       v-model="formData.title"
@@ -48,13 +57,10 @@ const handleSubmit = () => {
     </div>
     <div class="icon-form-input-container">
       <span class="material-symbols-outlined icon">today</span>
-      <input
-        type="date"
-        v-model="formData.dueDate"
-        class="item-input"
-      />
+      <input type="date" v-model="formData.dueDate" class="item-input" />
     </div>
     <div class="form-actions-container">
+      <!--TODO: 5. Ersetze den AppButtonPrimary mit einem slot mit name=actions-->
       <AppButtonPrimary>Create</AppButtonPrimary>
     </div>
   </form>
