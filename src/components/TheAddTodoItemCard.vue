@@ -27,8 +27,10 @@ const handleAddItem = () => {
     dueDate: itemData.dueDate,
   };
 
-  clearItemData();
   emit("addItem", item);
+
+  showForm.value = false;
+  clearItemData();
 };
 </script>
 
