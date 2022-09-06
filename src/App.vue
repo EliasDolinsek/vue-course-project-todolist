@@ -4,6 +4,7 @@ import { computed, ref } from "vue";
 import TodoItemsCategory from "./components/TodoItemsCategory.vue";
 import TheAddTodoItemCard from "./components/TheAddTodoItemCard.vue";
 import AppIconText from "./components/icon-text/AppIconText.vue";
+import AppButtonCircledCheck from "./components/button/AppButtonCircledCheck.vue";
 
 const todoItems = ref([
   {
@@ -21,6 +22,8 @@ const todoItems = ref([
     done: true,
   },
 ]);
+
+const buttonCircledChecked = ref(false)
 
 const todoItemsNotDone = computed(() => {
   return todoItems.value.filter((item) => !item.done);
@@ -66,6 +69,7 @@ const handleTodoItemAdd = (item) => {
       <AppIconText icon="today" text="2022-11-11" color="#9F7443"/>
       <AppIconText icon="delete" text="Delete" color="#E66D67" action/>
       <AppIconText icon="edit" text="Edit" color="#7D7D85" action/>
+      <AppButtonCircledCheck v-model="buttonCircledChecked"/>
     </div>
   </main>
 </template>
