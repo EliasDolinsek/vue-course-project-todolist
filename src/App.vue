@@ -66,6 +66,7 @@ const handleTodoItemAdd = (item) => {
       <AppIconText icon="today" text="2022-11-11" color="#9F7443"/>
       <AppIconText icon="delete" text="Delete" color="#E66D67" action/>
       <AppIconText icon="edit" text="Edit" color="#7D7D85" action/>
+      <!--TODO: 1. Erstelle einene AppButtonCircledCheck, welcher v-model verwendet, um den checked-Status zu speichern-->
     </div>
   </main>
 </template>
