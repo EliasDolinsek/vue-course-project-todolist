@@ -65,12 +65,6 @@ const isButtonCircleCheckChecked = ref(false)
       :todo-items="todoItemsDone"
       :title="todoItemsDoneCategoryTitle"
     />
-    <div>
-      <AppIconText icon="today" text="2022-11-11" color="#9F7443"/>
-      <AppIconText icon="delete" text="Delete" color="#E66D67" action/>
-      <AppIconText icon="edit" text="Edit" color="#7D7D85" action/>
-      <AppButtonCircledCheck v-model="isButtonCircleCheckChecked"/>
-    </div>
   </main>
 </template>
 

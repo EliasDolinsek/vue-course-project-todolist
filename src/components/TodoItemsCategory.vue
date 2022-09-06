@@ -1,10 +1,16 @@
 <script setup>
+import TodoItem from "./TodoItem.vue";
 defineProps(["title", "todoItems"]);
 </script>
 
 <template>
   <h3 class="category-title">{{ title }}</h3>
-  <p style="color: white">{{ todoItems }}</p>
+  <TodoItem
+    v-for="(item, index) in todoItems"
+    :key="index"
+    :model-value="item"
+    class="todo-item"
+  />
 </template>
 
 <style scoped>
