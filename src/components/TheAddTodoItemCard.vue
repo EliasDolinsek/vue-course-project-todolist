@@ -1,13 +1,33 @@
 <script setup>
-import { ref } from "vue";
+import { reactive, ref } from "vue";
 import AppButtonCircledAdd from "./button/AppButtonCircledAdd.vue";
 import TodoItemForm from "./TodoItemForm.vue";
+import AppButtonPrimary from "./button/AppButtonPrimary.vue";
 
 const showForm = ref(false);
 
-const emit = defineEmits("addItem");
+const emit = defineEmits(["addItem"]);
 
-const handleAddItem = (item) => {
+const itemData = reactive({
+  taskName: "",
+  description: "",
+  dueDate: null,
+});
+
+const clearItemData = () => {
+  itemData.taskName = "";
+  itemData.description = "";
+  itemData.dueDate = "";
+};
+
+const handleAddItem = () => {
+  const item = {
+    taskName: itemData.taskName,
+    description: itemData.description,
+    dueDate: itemData.dueDate,
+  };
+
+  clearItemData();
   emit("addItem", item);
 };
 </script>
@@ -15,7 +35,14 @@ const handleAddItem = (item) => {
 <template>
   <div class="card-container">
     <div v-if="showForm">
-      <TodoItemForm @add-item="handleAddItem" />
+      <TodoItemForm v-model="itemData">
+        <template #actions>
+          <AppButtonPrimary @click="handleAddItem">Create</AppButtonPrimary>
+          <button class="button-cancel" @click="showForm = false">
+            Cancel
+          </button>
+        </template>
+      </TodoItemForm>
     </div>
     <div v-else class="add-item-texts-container" @click="showForm = true">
       <AppButtonCircledAdd />

@@ -1,38 +1,77 @@
 <script setup>
-import { reactive } from "vue";
-import AppButtonPrimary from "./button/AppButtonPrimary.vue";
+import { computed } from "vue";
 
-const emit = defineEmits(["addItem"]);
-
-const formData = reactive({
-  title: "",
-  description: "",
-  dueDate: null,
+const props = defineProps({
+  modelValue: {
+    type: Object,
+    required: true,
+  },
+  dateClearable: {
+    type: Boolean,
+    default: false,
+  },
 });
 
-const clearFormData = () => {
-  formData.title = "";
-  formData.description = "";
-  dueDate = null;
-};
+const emit = defineEmits(["update:modelValue"]);
 
-const handleSubmit = () => {
-  const newItem = {
-    title: formData.title,
-    description: formData.description,
-    dueDate: formData.dueDate,
-  };
+const localModelValue = computed({
+  get() {
+    const modelValue = props.modelValue;
 
-  emit("addItem", newItem);
-  clearFormData();
+    modelValue.taskName = taskName.value;
+    modelValue.description = description.value;
+    modelValue.dueDate = dueDate.value;
+
+    return modelValue;
+  },
+  set(value) {
+    emit("update:modelValue", value);
+  },
+});
+
+const taskName = computed({
+  get() {
+    return props.modelValue.taskName;
+  },
+  set(value) {
+    const item = localModelValue.value;
+    item.taskName = value;
+    localModelValue.value = item;
+  },
+});
+
+const description = computed({
+  get() {
+    return props.modelValue.description;
+  },
+  set(value) {
+    const item = localModelValue.value;
+    item.description = value;
+    localModelValue.value = item;
+  },
+});
+
+const dueDate = computed({
+  get() {
+    return props.modelValue.dueDate;
+  },
+  set(value) {
+    const item = localModelValue.value;
+    item.dueDate = value;
+    localModelValue.value = item;
+  },
+});
+
+const handleSubmit = (e) => {
+  e.preventDefault();
 };
 </script>
 
 <template>
-  <form @submit.prevent="handleSubmit" class="form-container">
+  <form @submit="handleSubmit" class="form-container">
     <input
       type="text"
-      v-model="formData.title"
+      v-model="taskName"
       placeholder="Title"
       class="input-title item-input"
       required
@@ -41,21 +80,17 @@ const handleSubmit = () => {
       <span class="material-symbols-outlined icon">text_snippet</span>
       <input
         type="text"
-        v-model="formData.description"
+        v-model="description"
         placeholder="Description"
         class="item-input item-input-expanded"
       />
     </div>
     <div class="icon-form-input-container">
       <span class="material-symbols-outlined icon">today</span>
-      <input
-        type="date"
-        v-model="formData.dueDate"
-        class="item-input"
-      />
+      <input type="date" v-model="dueDate" class="item-input" />
     </div>
     <div class="form-actions-container">
-      <AppButtonPrimary>Create</AppButtonPrimary>
+      <slot name="actions" />
     </div>
   </form>
 </template>
