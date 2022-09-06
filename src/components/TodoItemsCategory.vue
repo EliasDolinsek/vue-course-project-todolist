@@ -1,5 +1,6 @@
 <script setup>
 import TodoItem from "./TodoItem.vue";
+
 defineProps(["title", "todoItems"]);
 </script>
 
