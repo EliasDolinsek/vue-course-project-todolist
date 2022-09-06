@@ -2,6 +2,10 @@
 import TodoItem from "./TodoItem.vue";
 
 defineProps(["title", "todoItems"]);
+
+const handleUpdateModelValue = () => {
+  console.log("Update model value called")
+}
 </script>
 
 <template>
@@ -10,6 +14,7 @@ defineProps(["title", "todoItems"]);
     v-for="(item, index) in todoItems"
     :key="index"
     :model-value="item"
+    @update:modelValue="handleUpdateModelValue"
     class="todo-item"
   />
 </template>
