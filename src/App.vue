@@ -65,6 +65,7 @@ const isButtonCircleCheckChecked = ref(false)
       :todo-items="todoItemsDone"
       :title="todoItemsDoneCategoryTitle"
     />
+    <!--TODO: 1. Entferne das untergeordnete div-->
     <div>
       <AppIconText icon="today" text="2022-11-11" color="#9F7443"/>
       <AppIconText icon="delete" text="Delete" color="#E66D67" action/>
