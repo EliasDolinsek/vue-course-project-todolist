@@ -23,8 +23,6 @@ const todoItems = ref([
   },
 ]);
 
-const buttonCircledChecked = ref(false)
-
 const todoItemsNotDone = computed(() => {
   return todoItems.value.filter((item) => !item.done);
 });
@@ -50,6 +48,8 @@ const handleTodoItemAdd = (item) => {
 
   todoItems.value.push(newItem);
 };
+
+const isButtonCircleCheckChecked = ref(false)
 </script>
 
 <template>
@@ -69,7 +69,7 @@ const handleTodoItemAdd = (item) => {
       <AppIconText icon="today" text="2022-11-11" color="#9F7443"/>
       <AppIconText icon="delete" text="Delete" color="#E66D67" action/>
       <AppIconText icon="edit" text="Edit" color="#7D7D85" action/>
-      <AppButtonCircledCheck v-model="buttonCircledChecked"/>
+      <AppButtonCircledCheck v-model="isButtonCircleCheckChecked"/>
     </div>
   </main>
 </template>
