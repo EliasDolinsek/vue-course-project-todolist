@@ -9,7 +9,7 @@ import AppButtonCircled from "./AppButtonCircled.vue";
 
 <template>
     <!--TODO: 4. Verwende die AppButtonCircled-Component als Basis-->
-    <!--TODO: 5. Erstelle einen span mit class="material-symbols-outlined icon", welcher angezeigt wird, wenn der Button checked ist-->
+    <!--TODO: 5. Erstelle einen span mit class="material-symbols-outlined icon" und dem Inhalt "check" welcher angezeigt wird, wenn der Button checked ist-->
     <!--TODO: 6. Erstelle ein div mit class="check-card", welcher angezeigt wird, wenn der Button nicht checked ist-->
 </template>
 
