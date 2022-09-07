@@ -23,6 +23,8 @@ const todoItems = ref([
   },
 ]);
 
+// TODO: 14. Ändere die computed properties, welche die todoItems für done/upcoming zurückgeben auf Getter/Setter um, um diese als v-model verwenden zu können
+// TODO: 15. Sortiere die done-todoItems nach dueDate
 const todoItemsNotDone = computed(() => {
   return todoItems.value.filter((item) => !item.done);
 });
@@ -50,6 +52,8 @@ const handleTodoItemAdd = (item) => {
 };
 
 const isButtonCircleCheckChecked = ref(false)
+
+//TODO: 13. Erstelle eine deleteItemById function, welche aufgerfufen wird, sobald der User ein Todo-Item löscht
 </script>
 
 <template>

@@ -88,6 +88,7 @@ const handleSubmit = (e) => {
     <div class="icon-form-input-container">
       <span class="material-symbols-outlined icon">today</span>
       <input type="date" v-model="dueDate" class="item-input" />
+      <!--TODO: 8. Erstelle ein span, welches bei Klick das dueDate auf null setzt, sofern dieses Feature über die Props aktiviert ist, setze class="material-symbols-outlined icon button-remove-date" und den Inhalt auf "close"-->
     </div>
     <div class="form-actions-container">
       <slot name="actions" />
