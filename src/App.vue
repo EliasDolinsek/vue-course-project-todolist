@@ -3,8 +3,6 @@ import { v4 as uuidv4 } from "uuid";
 import { computed, ref } from "vue";
 import TodoItemsCategory from "./components/TodoItemsCategory.vue";
 import TheAddTodoItemCard from "./components/TheAddTodoItemCard.vue";
-import AppIconText from "./components/icon-text/AppIconText.vue";
-import AppButtonCircledCheck from "./components/button/AppButtonCircledCheck.vue";
 
 const todoItems = ref([
   {
@@ -23,12 +21,38 @@ const todoItems = ref([
   },
 ]);
 
-const todoItemsNotDone = computed(() => {
-  return todoItems.value.filter((item) => !item.done);
+const updateTodoItems = (updatedItems) => {
+  updatedItems.forEach((updatedItem) => {
+    todoItems.value = todoItems.value.map((item) =>
+      item.id === updatedItem.id ? updatedItem : item
+    );
+  });
+};
+
+const todoItemsNotDone = computed({
+  get() {
+    return todoItems.value
+      .filter((item) => !item.done)
+      .sort((a, b) => {
+        const dateToday = new Date();
+        return (
+          (new Date(a.dueDate) ?? dateToday).getTime() -
+          (new Date(b.dueDate) ?? dateToday).getTime()
+        );
+      });
+  },
+  set(value) {
+    updateTodoItems(value);
+  },
 });
 
-const todoItemsDone = computed(() => {
-  return todoItems.value.filter((item) => item.done);
+const todoItemsDone = computed({
+  get() {
+    return todoItems.value.filter((item) => item.done);
+  },
+  set(value) {
+    updateTodoItems(value);
+  },
 });
 
 const todoItemsNotDoneCategoryTitle = computed(
@@ -49,7 +73,12 @@ const handleTodoItemAdd = (item) => {
   todoItems.value.push(newItem);
 };
 
-const isButtonCircleCheckChecked = ref(false)
+const deleteItemById = (id) => {
+  todoItems.value.splice(
+    todoItems.value.findIndex((item) => item.id === id),
+    1
+  );
+};
 </script>
 
 <template>
@@ -58,12 +87,14 @@ const isButtonCircleCheckChecked = ref(false)
     <h1 id="title">Todolist</h1>
     <TheAddTodoItemCard @add-item="handleTodoItemAdd" />
     <TodoItemsCategory
-      :todo-items="todoItemsNotDone"
+      v-model="todoItemsNotDone"
       :title="todoItemsNotDoneCategoryTitle"
+      @on-item-delete="(id) => deleteItemById(id)"
     />
     <TodoItemsCategory
-      :todo-items="todoItemsDone"
+      v-model="todoItemsDone"
       :title="todoItemsDoneCategoryTitle"
+      @on-item-delete="(id) => deleteItemById(id)"
     />
   </main>
 </template>

@@ -1,20 +1,38 @@
 <script setup>
 import TodoItem from "./TodoItem.vue";
 
-defineProps(["title", "todoItems"]);
+const props = defineProps({
+  modelValue: {
+    type: Array,
+    required: true,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+});
 
-const handleUpdateModelValue = () => {
-  console.log("Update model value called")
-}
+const emit = defineEmits(["update:modelValue", "onItemDelete"]);
+
+const handleUpdateModelValue = (value, index) => {
+  const itemsCopy = JSON.parse(JSON.stringify(props.modelValue));
+  itemsCopy[index] = value;
+  emit("update:modelValue", itemsCopy);
+};
+
+const handleDeleteTodoItem = (index) => {
+  emit("onItemDelete", props.modelValue[index].id);
+};
 </script>
 
 <template>
   <h3 class="category-title">{{ title }}</h3>
   <TodoItem
-    v-for="(item, index) in todoItems"
+    v-for="(item, index) in modelValue"
     :key="index"
     :model-value="item"
-    @update:modelValue="handleUpdateModelValue"
+    @update:modelValue="(value) => handleUpdateModelValue(value, index)"
+    @on-item-delete="() => handleDeleteTodoItem(index)"
     class="todo-item"
   />
 </template>

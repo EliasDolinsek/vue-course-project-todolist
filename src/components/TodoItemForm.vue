@@ -88,6 +88,12 @@ const handleSubmit = (e) => {
     <div class="icon-form-input-container">
       <span class="material-symbols-outlined icon">today</span>
       <input type="date" v-model="dueDate" class="item-input" />
+      <span
+        v-if="dateClearable"
+        class="material-symbols-outlined icon button-remove-date"
+        @click="dueDate = null"
+        >close</span
+      >
     </div>
     <div class="form-actions-container">
       <slot name="actions" />
