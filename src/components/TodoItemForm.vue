@@ -65,10 +65,13 @@ const dueDate = computed({
 const handleSubmit = (e) => {
   e.preventDefault();
 };
+
+// TODO: 2. Fokussiere den taskName-input, sobald die component gemounted wurde
 </script>
 
 <template>
   <form @submit="handleSubmit" class="form-container">
+    <!--TODO: 1. Erstelle ein Template-Ref für den taskName-input-->
     <input
       type="text"
       v-model="taskName"
