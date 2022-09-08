@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from "vue";
+import { computed, onMounted, ref } from "vue";
 
 const props = defineProps({
   modelValue: {
@@ -65,11 +65,18 @@ const dueDate = computed({
 const handleSubmit = (e) => {
   e.preventDefault();
 };
+
+const taskNameInput = ref(null);
+
+onMounted(() => {
+  taskNameInput.value.focus();
+});
 </script>
 
 <template>
   <form @submit="handleSubmit" class="form-container">
     <input
+      ref="taskNameInput"
       type="text"
       v-model="taskName"
       placeholder="Title"
