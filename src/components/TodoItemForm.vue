@@ -1,6 +1,7 @@
 <script setup>
 import { computed, onMounted, ref } from "vue";
 
+// TODO: 1. Schreibe diese Component so um, dass sie setup() verwendet
 const props = defineProps({
   modelValue: {
     type: Object,
