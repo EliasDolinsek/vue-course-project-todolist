@@ -1,76 +1,87 @@
-<script setup>
+<script>
 import { computed, onMounted, ref } from "vue";
 
-const props = defineProps({
-  modelValue: {
-    type: Object,
-    required: true,
+export default {
+  props: {
+    modelValue: {
+      type: Object,
+      required: true,
+    },
+    dateClearable: {
+      type: Boolean,
+      default: false,
+    },
   },
-  dateClearable: {
-    type: Boolean,
-    default: false,
-  },
-});
+  emits: ["update:modelValue"],
+  setup(props, context) {
+    const localModelValue = computed({
+      get() {
+        const modelValue = props.modelValue;
 
-const emit = defineEmits(["update:modelValue"]);
+        modelValue.taskName = taskName.value;
+        modelValue.description = description.value;
+        modelValue.dueDate = dueDate.value;
 
-const localModelValue = computed({
-  get() {
-    const modelValue = props.modelValue;
+        return modelValue;
+      },
+      set(value) {
+        context.emit("update:modelValue", value);
+      },
+    });
 
-    modelValue.taskName = taskName.value;
-    modelValue.description = description.value;
-    modelValue.dueDate = dueDate.value;
+    const taskName = computed({
+      get() {
+        return props.modelValue.taskName;
+      },
+      set(value) {
+        const item = localModelValue.value;
+        item.taskName = value;
+        localModelValue.value = item;
+      },
+    });
 
-    return modelValue;
-  },
-  set(value) {
-    emit("update:modelValue", value);
-  },
-});
+    const description = computed({
+      get() {
+        return props.modelValue.description;
+      },
+      set(value) {
+        const item = localModelValue.value;
+        item.description = value;
+        localModelValue.value = item;
+      },
+    });
 
-const taskName = computed({
-  get() {
-    return props.modelValue.taskName;
-  },
-  set(value) {
-    const item = localModelValue.value;
-    item.taskName = value;
-    localModelValue.value = item;
-  },
-});
+    const dueDate = computed({
+      get() {
+        return props.modelValue.dueDate;
+      },
+      set(value) {
+        const item = localModelValue.value;
+        item.dueDate = value;
+        localModelValue.value = item;
+      },
+    });
 
-const description = computed({
-  get() {
-    return props.modelValue.description;
-  },
-  set(value) {
-    const item = localModelValue.value;
-    item.description = value;
-    localModelValue.value = item;
-  },
-});
+    const handleSubmit = (e) => {
+      e.preventDefault();
+    };
 
-const dueDate = computed({
-  get() {
-    return props.modelValue.dueDate;
-  },
-  set(value) {
-    const item = localModelValue.value;
-    item.dueDate = value;
-    localModelValue.value = item;
-  },
-});
+    const taskNameInput = ref(null);
 
-const handleSubmit = (e) => {
-  e.preventDefault();
+    onMounted(() => {
+      taskNameInput.value.focus();
+    });
+
+    return {
+      localModelValue,
+      taskName,
+      description,
+      dueDate,
+      handleSubmit,
+      taskNameInput,
+    };
+  },
 };
-
-const taskNameInput = ref(null);
-
-onMounted(() => {
-  taskNameInput.value.focus();
-});
 </script>
 
 <template>
