@@ -13,7 +13,7 @@ const formData = reactive({
 const clearFormData = () => {
   formData.title = "";
   formData.description = "";
-  dueDate = null;
+  formData.dueDate = null;
 };
 
 const handleSubmit = () => {
