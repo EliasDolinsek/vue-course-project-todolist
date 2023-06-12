@@ -3,39 +3,47 @@ import AppIconText from "./icon-text/AppIconText.vue";
 import AppButtonCircledCheck from "./button/AppButtonCircledCheck.vue";
 import TodoItemForm from "./TodoItemForm.vue";
 import AppButtonPrimary from "./button/AppButtonPrimary.vue";
-import { computed, ref } from "vue";
+import { computed, onUpdated, ref } from "vue";
+import { useTodoItemsStore } from "../stores/todos";
 
 const props = defineProps({
-  modelValue: {
+  item: {
     type: Object,
     required: true,
   },
 });
 
-const emit = defineEmits(["update:modelValue", "onItemDelete"]);
+const todoItemsStore = useTodoItemsStore();
 
 const showEditForm = ref(false);
-const item = ref(props.modelValue);
+const item = ref(props.item);
 
 const handleItemUpdate = () => {
-  emit("update:modelValue", item);
+  todoItemsStore.updateItemById(item.value.id, item.value);
   showEditForm.value = false;
 };
 
 const description = computed(() => {
-  return props.modelValue.description == null ||
-    props.modelValue.description.trim().length === 0
+  return props.item.description == null ||
+    props.item.description.trim().length === 0
     ? "No Description"
-    : props.modelValue.description;
+    : props.item.description;
 });
 
 const isDone = computed({
   get() {
-    return props.modelValue.done;
+    return props.item.done;
   },
   set(value) {
-    emit("update:modelValue", { ...props.modelValue, done: value });
+    todoItemsStore.updateItemById(props.item.id, {
+      ...props.item,
+      done: value,
+    });
   },
+});
+
+onUpdated(() => {
+  item.value = props.item;
 });
 </script>
 
@@ -51,13 +59,13 @@ const isDone = computed({
     </div>
     <div v-else>
       <h3 :class="{ 'todo-item-title': true, 'todo-item-title-done': isDone }">
-        {{ modelValue.taskName }}
+        {{ item.taskName }}
       </h3>
       <p class="todo-item-subtitle">{{ description }}</p>
       <div class="actions-container">
         <AppIconText
-          v-if="modelValue.dueDate"
-          :text="modelValue.dueDate"
+          v-if="item.dueDate"
+          :text="item.dueDate"
           icon="today"
           color="#9F7443"
         />
@@ -66,7 +74,7 @@ const isDone = computed({
           text="Delete"
           icon="delete"
           color="#E66D67"
-          @click="$emit('onItemDelete')"
+          @click="todoItemsStore.deleteItemById(item.id)"
           action
         />
         <AppIconText

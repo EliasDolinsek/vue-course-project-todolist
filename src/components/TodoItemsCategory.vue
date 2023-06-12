@@ -1,8 +1,8 @@
 <script setup>
 import TodoItem from "./TodoItem.vue";
 
-const props = defineProps({
-  modelValue: {
+defineProps({
+  todoItems: {
     type: Array,
     required: true,
   },
@@ -11,28 +11,14 @@ const props = defineProps({
     required: true,
   },
 });
-
-const emit = defineEmits(["update:modelValue", "onItemDelete"]);
-
-const handleUpdateModelValue = (value, index) => {
-  const itemsCopy = JSON.parse(JSON.stringify(props.modelValue));
-  itemsCopy[index] = value;
-  emit("update:modelValue", itemsCopy);
-};
-
-const handleDeleteTodoItem = (index) => {
-  emit("onItemDelete", props.modelValue[index].id);
-};
 </script>
 
 <template>
   <h3 class="category-title">{{ title }}</h3>
   <TodoItem
-    v-for="(item, index) in modelValue"
+    v-for="(item, index) in todoItems"
     :key="index"
-    :model-value="item"
-    @update:modelValue="(value) => handleUpdateModelValue(value, index)"
-    @on-item-delete="() => handleDeleteTodoItem(index)"
+    :item="item"
     class="todo-item"
   />
 </template>
