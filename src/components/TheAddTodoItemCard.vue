@@ -3,10 +3,10 @@ import { reactive, ref } from "vue";
 import AppButtonCircledAdd from "./button/AppButtonCircledAdd.vue";
 import TodoItemForm from "./TodoItemForm.vue";
 import AppButtonPrimary from "./button/AppButtonPrimary.vue";
+import { useTodoItemsStore } from "../stores/todos";
 
+const todoItemsStore = useTodoItemsStore();
 const showForm = ref(false);
-
-const emit = defineEmits(["addItem"]);
 
 const itemData = reactive({
   taskName: "",
@@ -21,13 +21,11 @@ const clearItemData = () => {
 };
 
 const handleAddItem = () => {
-  const item = {
-    taskName: itemData.taskName,
-    description: itemData.description,
-    dueDate: itemData.dueDate,
-  };
-
-  emit("addItem", item);
+  todoItemsStore.addTodoItem(
+    itemData.taskName,
+    itemData.description,
+    itemData.dueDate
+  );
 
   showForm.value = false;
   clearItemData();
