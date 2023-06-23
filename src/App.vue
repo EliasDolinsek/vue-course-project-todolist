@@ -63,16 +63,6 @@ const todoItemsDoneCategoryTitle = computed(
   () => `Done - (${todoItemsDone.value.length})`
 );
 
-const handleTodoItemAdd = (item) => {
-  const newItem = {
-    id: uuidv4(),
-    done: false,
-    ...item,
-  };
-
-  todoItems.value.push(newItem);
-};
-
 const deleteItemById = (id) => {
   todoItems.value.splice(
     todoItems.value.findIndex((item) => item.id === id),
@@ -85,7 +75,7 @@ const deleteItemById = (id) => {
   <header class="colored-header"></header>
   <main>
     <h1 id="title">Todolist</h1>
-    <TheAddTodoItemCard @add-item="handleTodoItemAdd" />
+    <TheAddTodoItemCard />
     <TodoItemsCategory
       v-model="todoItemsNotDone"
       :title="todoItemsNotDoneCategoryTitle"
