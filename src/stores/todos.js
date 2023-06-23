@@ -20,6 +20,22 @@ export const useTodoItemsStore = defineStore("todos", {
       },
     ],
   }),
+  getters: {
+    todoItemsNotDone(state) {
+      return state.todoItems
+        .filter((item) => !item.done)
+        .sort((a, b) => {
+          const dateToday = new Date();
+          return (
+            (new Date(a.dueDate) ?? dateToday).getTime() -
+            (new Date(b.dueDate) ?? dateToday).getTime()
+          );
+        });
+    },
+    todoItemsDone(state) {
+      return state.todoItems.filter((item) => item.done);
+    },
+  },
   actions: {
     addTodoItem(taskName, description, dueDate) {
       const newTodoItem = {
@@ -31,6 +47,18 @@ export const useTodoItemsStore = defineStore("todos", {
       };
 
       this.todoItems.push(newTodoItem);
+    },
+    deleteItemById(id) {
+      this.todoItems.splice(
+        this.todoItems.findIndex((item) => item.id === id),
+        1
+      );
+    },
+    updateItemById(id, itemData) {
+      console.log(this.todoItems);
+      const itemIndex = this.todoItems.findIndex((item) => item.id === id);
+      console.log(itemIndex);
+      this.todoItems[itemIndex] = itemData;
     },
   },
 });

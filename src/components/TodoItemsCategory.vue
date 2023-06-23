@@ -11,18 +11,6 @@ const props = defineProps({
     required: true,
   },
 });
-
-const emit = defineEmits(["update:modelValue", "onItemDelete"]);
-
-const handleUpdateModelValue = (value, index) => {
-  const itemsCopy = JSON.parse(JSON.stringify(props.modelValue));
-  itemsCopy[index] = value;
-  emit("update:modelValue", itemsCopy);
-};
-
-const handleDeleteTodoItem = (index) => {
-  emit("onItemDelete", props.modelValue[index].id);
-};
 </script>
 
 <template>
@@ -30,9 +18,7 @@ const handleDeleteTodoItem = (index) => {
   <TodoItem
     v-for="(item, index) in modelValue"
     :key="index"
-    :model-value="item"
-    @update:modelValue="(value) => handleUpdateModelValue(value, index)"
-    @on-item-delete="() => handleDeleteTodoItem(index)"
+    :item="item"
     class="todo-item"
   />
 </template>
