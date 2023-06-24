@@ -35,6 +35,16 @@ export const useTodoItemsStore = defineStore("todos", {
     todoItemsDone(state) {
       return state.todoItems.filter((item) => item.done);
     },
+    todoItemsNotDoneCount() {
+      return this.todoItemsNotDone.length;
+    },
+    todoItemsDoneCount() {
+      return this.todoItemsDone.length;
+    },
+    findTodoItemsByDueDate(state) {
+      return (dueDate) =>
+        state.todoItems.filter((item) => item.dueDate === dueDate);
+    },
   },
   actions: {
     addTodoItem(taskName, description, dueDate) {

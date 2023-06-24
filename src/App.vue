@@ -7,17 +7,20 @@ import { useTodoItemsStore } from "./stores/todos";
 const todoItemsStore = useTodoItemsStore();
 
 const todoItemsNotDoneCategoryTitle = computed(
-  () => `Upcoming - (${todoItemsStore.todoItemsNotDone.length})`
+  () => `Upcoming - (${todoItemsStore.todoItemsNotDoneCount})`
 );
 
 const todoItemsDoneCategoryTitle = computed(
-  () => `Done - (${todoItemsStore.todoItemsDone.length})`
+  () => `Done - (${todoItemsStore.todoItemsDoneCount})`
 );
 </script>
 
 <template>
   <header class="colored-header"></header>
   <main>
+    <p style="color: white;">
+      {{ todoItemsStore.findTodoItemsByDueDate("2023-01-01") }}
+    </p>
     <h1 id="title">Todolist</h1>
     <TheAddTodoItemCard />
     <TodoItemsCategory
