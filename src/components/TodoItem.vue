@@ -14,7 +14,7 @@ const props = defineProps({
 });
 
 //TODO: 5. Ersetzte alle Events durch Actions
-//TODO: 6. Nutze watch um das zwischengespeicherte Item zu updaten
+//TODO: 6. Nutze onUpdated um das zwischengespeicherte Item zu updaten
 const emit = defineEmits(["update:modelValue", "onItemDelete"]);
 
 // TODO: 4. Erstelle eine Instanz vom todoItemsStore
