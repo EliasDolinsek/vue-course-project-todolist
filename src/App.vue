@@ -76,6 +76,7 @@ const deleteItemById = (id) => {
   <main>
     <h1 id="title">Todolist</h1>
     <TheAddTodoItemCard />
+    <!-- TODO: 11. Ersetze Computed-Properties durch den Store-->
     <TodoItemsCategory
       v-model="todoItemsNotDone"
       :title="todoItemsNotDoneCategoryTitle"

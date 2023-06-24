@@ -20,6 +20,7 @@ export const useTodoItemsStore = defineStore("todos", {
       },
     ],
   }),
+  // TODO: 10. Erstelle die Getter "todoItemsDone" und "todoItemsNotDone"
   actions: {
     addTodoItem(taskName, description, dueDate) {
       const newTodoItem = {
@@ -32,5 +33,7 @@ export const useTodoItemsStore = defineStore("todos", {
 
       this.todoItems.push(newTodoItem);
     },
+    // TODO: 1. Erstelle eine Action "deleteItemById(id)"
+    // TODO: 2. Erstelle eine Action "updateItemById(id, itemData)"
   },
 });

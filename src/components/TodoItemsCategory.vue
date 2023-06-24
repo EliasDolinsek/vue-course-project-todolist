@@ -1,6 +1,7 @@
 <script setup>
 import TodoItem from "./TodoItem.vue";
 
+// TODO: 9. Ändere "modelValue" zu "items"
 const props = defineProps({
   modelValue: {
     type: Array,
@@ -12,6 +13,7 @@ const props = defineProps({
   },
 });
 
+// TODO: 8. Entferne alle events
 const emit = defineEmits(["update:modelValue", "onItemDelete"]);
 
 const handleUpdateModelValue = (value, index) => {
@@ -27,6 +29,7 @@ const handleDeleteTodoItem = (index) => {
 
 <template>
   <h3 class="category-title">{{ title }}</h3>
+  <!--TODO: 7. Entferne alte props / events -->
   <TodoItem
     v-for="(item, index) in modelValue"
     :key="index"

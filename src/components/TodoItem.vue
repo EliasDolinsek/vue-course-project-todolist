@@ -5,6 +5,7 @@ import TodoItemForm from "./TodoItemForm.vue";
 import AppButtonPrimary from "./button/AppButtonPrimary.vue";
 import { computed, ref } from "vue";
 
+// TODO: 3. Ändere "modelValue" zu "item"
 const props = defineProps({
   modelValue: {
     type: Object,
@@ -12,7 +13,11 @@ const props = defineProps({
   },
 });
 
+//TODO: 5. Ersetzte alle Events durch Actions
+//TODO: 6. Nutze watch um das zwischengespeicherte Item zu updaten
 const emit = defineEmits(["update:modelValue", "onItemDelete"]);
+
+// TODO: 4. Erstelle eine Instanz vom todoItemsStore
 
 const showEditForm = ref(false);
 const item = ref(props.modelValue);
