@@ -3,7 +3,7 @@ import AppIconText from "./icon-text/AppIconText.vue";
 import AppButtonCircledCheck from "./button/AppButtonCircledCheck.vue";
 import TodoItemForm from "./TodoItemForm.vue";
 import AppButtonPrimary from "./button/AppButtonPrimary.vue";
-import { computed, onUpdated, ref } from "vue";
+import { computed, onUpdated, ref, watch } from "vue";
 import { useTodoItemsStore } from "../stores/todos";
 
 const props = defineProps({

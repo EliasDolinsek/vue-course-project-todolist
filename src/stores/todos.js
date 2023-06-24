@@ -55,9 +55,7 @@ export const useTodoItemsStore = defineStore("todos", {
       );
     },
     updateItemById(id, itemData) {
-      console.log(this.todoItems);
       const itemIndex = this.todoItems.findIndex((item) => item.id === id);
-      console.log(itemIndex);
       this.todoItems[itemIndex] = itemData;
     },
   },
