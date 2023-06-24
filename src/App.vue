@@ -21,11 +21,11 @@ const todoItemsDoneCategoryTitle = computed(
     <h1 id="title">Todolist</h1>
     <TheAddTodoItemCard />
     <TodoItemsCategory
-      v-model="todoItemsStore.todoItemsNotDone"
+      :items="todoItemsStore.todoItemsNotDone"
       :title="todoItemsNotDoneCategoryTitle"
     />
     <TodoItemsCategory
-      v-model="todoItemsStore.todoItemsDone"
+      :items="todoItemsStore.todoItemsDone"
       :title="todoItemsDoneCategoryTitle"
     />
   </main>

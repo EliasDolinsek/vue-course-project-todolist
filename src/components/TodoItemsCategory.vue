@@ -2,7 +2,7 @@
 import TodoItem from "./TodoItem.vue";
 
 const props = defineProps({
-  modelValue: {
+  items: {
     type: Array,
     required: true,
   },
@@ -16,7 +16,7 @@ const props = defineProps({
 <template>
   <h3 class="category-title">{{ title }}</h3>
   <TodoItem
-    v-for="(item, index) in modelValue"
+    v-for="(item, index) in items"
     :key="index"
     :item="item"
     class="todo-item"
