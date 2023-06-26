@@ -18,9 +18,6 @@ const todoItemsDoneCategoryTitle = computed(
 <template>
   <header class="colored-header"></header>
   <main>
-    <p style="color: white;">
-      {{ todoItemsStore.findTodoItemsByDueDate("2023-01-01") }}
-    </p>
     <h1 id="title">Todolist</h1>
     <TheAddTodoItemCard />
     <TodoItemsCategory
