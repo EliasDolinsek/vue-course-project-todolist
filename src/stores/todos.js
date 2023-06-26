@@ -1,6 +1,7 @@
 import { defineStore } from "pinia/dist/pinia";
 import { v4 as uuidv4 } from "uuid";
 
+// TODO: 1. Definiere den Store mithilfe der Setup-Syntax
 export const useTodoItemsStore = defineStore("todos", {
   state: () => ({
     todoItems: [
